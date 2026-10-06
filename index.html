@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>八句话</title>
+  <meta name="description" content="录好 8 句话，见面时一人一只耳机，只靠按钮聊天。">
+  <meta name="theme-color" content="#FFF8F1">
+  <meta name="color-scheme" content="light">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="八句话">
+  <meta name="format-detection" content="telephone=no">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-sun" viewBox="0 0 24 24"><circle class="sun-core" cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></symbol>
+      <symbol id="i-pen" viewBox="0 0 24 24"><path d="M15.6 4.2a2.4 2.4 0 0 1 3.4 0l.8.8a2.4 2.4 0 0 1 0 3.4L9.4 18.8l-5 1.3a.4.4 0 0 1-.5-.5l1.3-5Z" fill="currentColor"/></symbol>
+      <symbol id="i-chart" viewBox="0 0 24 24"><g fill="currentColor"><rect x="4" y="11" width="4" height="9" rx="1.5"/><rect x="10" y="5" width="4" height="15" rx="1.5"/><rect x="16" y="8" width="4" height="12" rx="1.5"/></g></symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9.5 7V5a1.5 1.5 0 0 1 1.5-1.5h2A1.5 1.5 0 0 1 14.5 5v2M6 7l.9 12a2 2 0 0 0 2 1.9h6.2a2 2 0 0 0 2-1.9L18 7M10 11v6M14 11v6"/></g></symbol>
+      <symbol id="i-left" viewBox="0 0 24 24"><path d="M14.5 5.5 8 12l6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-right" viewBox="0 0 24 24"><path d="M9.5 5.5 16 12l-6.5 6.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="currentColor"/><path d="M5 11.5a7 7 0 0 0 14 0M12 18.5v3"/></g></symbol>
+      <symbol id="i-mic-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6.5" y="2.5" width="7" height="12" rx="3.5" fill="currentColor"/><path d="M3 11.5a7 7 0 0 0 11.5 5.4M10 18.5v3M19 3.5v6M16 6.5h6"/></g></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13a.8.8 0 0 0 1.2.7l10.4-6.5a.8.8 0 0 0 0-1.4L9.2 4.8A.8.8 0 0 0 8 5.5Z" fill="currentColor"/></symbol>
+    </defs>
+  </svg>
+
+  <div id="app" class="app" data-mode="play">
+    <header class="topbar">
+      <div class="bar-play">
+        <h1 class="title">八句话</h1>
+        <div class="actions">
+          <button id="btn-wake" class="icon-btn wake" type="button" aria-pressed="true" aria-label="屏幕常亮" hidden><svg><use href="#i-sun"/></svg></button>
+          <button id="btn-edit" class="icon-btn" type="button" aria-label="编辑"><svg><use href="#i-pen"/></svg></button>
+        </div>
+      </div>
+      <div class="bar-edit">
+        <button id="btn-done" class="pill-dark" type="button">完成</button>
+        <h1 class="title-edit">编辑</h1>
+        <div class="actions">
+          <button id="btn-stats" class="icon-btn" type="button" aria-label="播放统计"><svg><use href="#i-chart"/></svg></button>
+          <button id="btn-clear" class="icon-btn danger" type="button" aria-label="清除全部"><svg><use href="#i-trash"/></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <div id="install-hint" class="install-hint" hidden>
+      <div id="hint-ios" class="hint-row" hidden><p class="hint-text">先『分享 › 添加到主屏幕』，再从图标打开录音</p><button id="hint-why" class="hint-link" type="button">为什么？</button></div>
+      <div id="hint-android" class="hint-row" hidden><p class="hint-text">安装后离线也能用</p><button id="hint-install" class="hint-install" type="button">安装到主屏幕</button></div>
+      <button id="hint-close" class="hint-close" type="button" aria-label="不再提示"><svg><use href="#i-x"/></svg></button>
+    </div>
+
+    <main id="grid" class="grid" aria-label="8 句话"></main>
+  </div>
+
+  <div id="scrim" class="scrim"></div>
+
+  <section id="sheet-record" class="sheet sheet-record" role="dialog" aria-modal="true" aria-labelledby="rec-title" tabindex="-1" data-rec="need-permission">
+    <div class="grabber"></div>
+    <div class="rec-nav">
+      <button id="rec-prev" class="nav-btn" type="button" aria-label="上一句"><svg><use href="#i-left"/></svg></button>
+      <h2 id="rec-title" class="rec-title"><span class="dot"></span><span id="rec-title-text">第 1 句</span></h2>
+      <button id="rec-next" class="nav-btn" type="button" aria-label="下一句"><svg><use href="#i-right"/></svg></button>
+      <button class="nav-btn" type="button" aria-label="关闭" data-close><svg><use href="#i-x"/></svg></button>
+    </div>
+    <label class="field">
+      <input id="rec-text" type="text" maxlength="30" placeholder="这句话的文字（显示在按钮上）" enterkeyhint="done" autocomplete="off" autocorrect="off" spellcheck="false" aria-label="这句话的文字">
+      <span id="rec-count" class="count">0/30</span>
+    </label>
+    <div id="rec-wave" class="wave" data-view="empty">
+      <div id="rec-bars" class="wave-bars"></div>
+      <p class="wave-empty">还没有录音</p>
+      <p id="rec-time" class="wave-time">0:00.0</p>
+    </div>
+    <div class="hold-area">
+      <div id="rec-hold-wrap" class="hold-wrap">
+        <span class="ring r2"></span>
+        <span class="ring r1"></span>
+        <button id="rec-hold" class="hold" type="button" aria-describedby="rec-hint">
+          <svg class="ic-mic"><use href="#i-mic"/></svg>
+          <svg class="ic-mic-plus"><use href="#i-mic-plus"/></svg>
+          <svg class="ic-x"><use href="#i-x"/></svg>
+          <span class="spinner"></span>
+        </button>
+      </div>
+      <p id="rec-hint" class="hold-hint">点一下，开启麦克风</p>
+    </div>
+    <div class="rec-actions">
+      <button id="rec-preview" class="pill preview" type="button"><span class="fill"></span><svg><use href="#i-play"/></svg><span id="rec-preview-text">试听</span></button>
+      <button id="rec-delete" class="pill danger" type="button">删除录音</button>
+    </div>
+  </section>
+
+  <section id="sheet-stats" class="sheet sheet-stats" role="dialog" aria-modal="true" aria-labelledby="stats-title" tabindex="-1">
+    <div class="grabber"></div>
+    <div class="sheet-head">
+      <h2 id="stats-title">播放统计</h2>
+      <button class="nav-btn" type="button" aria-label="关闭" data-close><svg><use href="#i-x"/></svg></button>
+    </div>
+    <p id="stats-summary" class="stats-summary"></p>
+    <ol id="stats-list" class="stats-list"></ol>
+    <button id="stats-reset" class="pill soft reset" type="button">重置统计</button>
+  </section>
+
+  <section id="sheet-clear" class="sheet sheet-small" role="dialog" aria-modal="true" aria-labelledby="clear-title" tabindex="-1">
+    <div class="grabber"></div>
+    <h2 id="clear-title">清除全部 8 句？</h2>
+    <p class="sheet-desc">录音、文字和播放统计都会删除，无法恢复。</p>
+    <div class="two-btns">
+      <button class="pill soft" type="button" data-close>取消</button>
+      <button id="clear-confirm" class="pill solid-danger" type="button">清除</button>
+    </div>
+  </section>
+
+  <section id="sheet-help" class="sheet sheet-small" role="dialog" aria-modal="true" aria-labelledby="help-title" tabindex="-1">
+    <div class="grabber"></div>
+    <h2 id="help-title">iPhone 请先添加到主屏幕</h2>
+    <p class="sheet-desc">在 iPhone 上，Safari 标签页和主屏幕上的应用各存各的数据：在 Safari 里录好的音频，从主屏幕图标打开是看不到的；Safari 里的数据 7 天不访问还可能被系统清除。正确顺序是：</p>
+    <ol class="help-steps">
+      <li>用 Safari 打开本网址，点「分享」→「添加到主屏幕」。</li>
+      <li><b>从主屏幕图标打开</b>，在里面录完 8 句话。</li>
+      <li>当天也从主屏幕图标打开来玩：全屏、没有地址栏、断网也能用。</li>
+    </ol>
+    <p class="sheet-note">录音只存在这台手机上。只有三种情况会丢：在这里点「清除」、手动清除浏览器的网站数据、删除主屏幕图标。</p>
+    <button class="pill soft" type="button" data-close>知道了</button>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite">
+    <span id="toast-text"></span>
+    <button id="toast-action" class="toast-action" type="button" hidden>撤销</button>
+  </div>
+
+  <div id="unsupported" class="unsupported" hidden>
+    <p id="unsupported-text">浏览器版本太旧，请更新系统或改用 Chrome / Safari</p>
+  </div>
+  <script nomodule>document.getElementById('unsupported').hidden = false;</script>
+</body>
+</html>

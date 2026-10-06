@@ -1,0 +1,16 @@
+{
+  "name": "八句话",
+  "short_name": "八句话",
+  "description": "录好 8 句话，见面时一人一只耳机，只靠按钮聊天。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FFF8F1",
+  "theme_color": "#FFF8F1",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
